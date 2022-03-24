@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Unbenanntes Dokument</title>
+<script>
+"use strict";
+	function fTelefonanbieter
+	
+	var vGrundgebührA;
+	var vGrundgebührB;
+	var vKostenMinuteA;
+	var vKostenMinuteB;
+	var vMinutenzahl=0;
+	var vKostenA;
+	var vKostenB;
+	var vAusgabe""
+	var vBreakEvenPoint;
+	
+	vGrundgebührA=document.getElementById("idGrundgebührA").value;
+	vKostenMinuteA=document.getElementById("idKostenMinuteA").value;
+	vGrundgebührB=document.getElementById("idGrundgebührB").value;
+	vKostenB=document.getElementById("idKostenMinuteB").value;
+	vKostenAA=document.getElementById("idKostenA").value;
+	vKostenB=document.getElementById("idKostenB").value;
+	vBreakEvenPoint=document.getElementById("idBreakEvenPoint").value;
+	
+	
+	vBreakEvenPoint=(vGrundgebührA-vGrundgebührB)/(vKostenMinuteB-vKostenMinuteA);
+	vAusgabe = vAusgabe + "<table border=1>";
+	vAusgabe = vAusgabe + "<tr><th>Telefoneinheiten</th><th>Gesammtkosten A</th><th>Gesammtkosten B </th><th>Besseres Angebot?</th></tr>";
+	
+	
+	while(vMinutenzahl<=200){
+		vKostenA=vMinutenzahl*vKostenMinuteA+vGrundgebührA;
+		vKostenB=vMinutenzahl*vKostenMinuteB+vGrundgebührB;
+		
+		
+    if(vMinutenzahl<=vBreakEvenPoint){
+		
+			  vAusgabe=vAusgabe+"<tr><td>"+vStart+"</td><td>"+vKostenA.toFixed(2)+"€"+"</td><td>"+vKostenB.toFixed(2)+"€"+"</td><td>"+"Anbieter B ist günstiger"+"</td></tr>";
+		}
+		  
+		   else {
+		  	vAusgabe=vAusgabe+"<tr><td>"+vStart+"</td><td>"+vKostenA.toFixed(2)+"€"+"</td><td>"+vKostenB.toFixed(2)+"€"+"</td><td>"+"Anbieter A ist günstiger"+"</td></tr>";
+		     }	
+	
+		vAusgabe=vAusgabe+"</table>";
+			
+			
+			vBreakEvenPoint=vGrundgebührA-vGrundgebührB/vKostenMinuteA-vKostenMinuteA;	
+            vAusgabe=vAusgabe+ "Break-Even-Point: " +vBreakEvenPoint+ " </br>";
+			
+			
+			document.getElementById("idAusgabe").innerHTML=vAusgabe;
+		}
+	
+	vstart=vstart+10;
+	
+	
+	
+</script>
+</head>
+
+<body>
+	<h1>Telefonanbietervergleich</h1>
+	Grundgebühr Anbieter A: <input id="GrundgebührA" value="10" size="">
+	Kosten pro Tel. Minute: <input id="KostenMinuteA" value="0,05" size="">
+	<br>
+	Grundgebühr Anbieter B: <input id="GrundgebührB" value="5" size="">
+	Kosten pro Tel. Minute: <input id="KostenMinuteB" value="0,10" size="">
+	</br>
+	<button onClick="">Berechnen!</button>
+	<div id="idAusgabe"></div>
+</body>
+</html>
